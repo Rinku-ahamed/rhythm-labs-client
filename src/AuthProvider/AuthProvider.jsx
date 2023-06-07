@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../../firebase/firebase.config";
-import axios from "axios";
+// import axios from "axios";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -38,22 +38,22 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log(currentUser);
       // Get the token
-      if (currentUser) {
-        axios
-          .post("http://localhost:5000/jwt", { email: currentUser.email })
-          .then((response) => {
-            const { token } = response.data;
-            if (token) {
-              localStorage.setItem("access-token", token);
-            }
-          })
-          .catch((error) => {
-            // Handle error while getting the token
-            console.error("Error getting token:", error);
-          });
-      } else {
-        localStorage.removeItem("access-token");
-      }
+      //   if (currentUser) {
+      //     axios
+      //       .post("http://localhost:5000/jwt", { email: currentUser.email })
+      //       .then((response) => {
+      //         const { token } = response.data;
+      //         if (token) {
+      //           localStorage.setItem("access-token", token);
+      //         }
+      //       })
+      //       .catch((error) => {
+      //         // Handle error while getting the token
+      //         console.error("Error getting token:", error);
+      //       });
+      //   } else {
+      //     localStorage.removeItem("access-token");
+      //   }
     });
 
     return () => {
