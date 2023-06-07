@@ -36,10 +36,28 @@ const Register = () => {
         createUser(email, password)
           .then((result) => {
             const user = result.user;
-            toast.success("successfully register!!");
             handleUpdateUserInfo(user, name, imageUrl)
               .then(() => {
-                navigate(from, { replace: true });
+                const saveUser = {
+                  email: user.email,
+                  name: user.displayName,
+                  role: "student",
+                };
+                fetch("http://localhost:5000/users", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(saveUser),
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    console.log(data);
+                    if (data.insertedId) {
+                      toast.success("Successfully added user info");
+                    }
+                    navigate(from, { replace: true });
+                  });
               })
               .catch((error) => {
                 toast.error(error.message);
@@ -112,13 +130,26 @@ const Register = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/,
+                  })}
                   className="input input-bordered"
                 />
                 {errors.password && (
                   <span className="text-red-600">
                     password field is required
                   </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-600">Password must be 6 characters</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">
+                    Password must have one Uppercase one special character, one
+                    capital letter.
+                  </p>
                 )}
               </div>
               <div className="form-control">
