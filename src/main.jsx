@@ -8,7 +8,9 @@ import AuthProvider from "./AuthProvider/AuthProvider";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <React.StrictMode>
-      <RouterProvider router={router}></RouterProvider>
+      <div className="max-w-screen-xl mx-auto">
+        <RouterProvider router={router}></RouterProvider>
+      </div>
     </React.StrictMode>
   </AuthProvider>
 );

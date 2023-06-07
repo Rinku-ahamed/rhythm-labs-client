@@ -1,10 +1,10 @@
-import AuthProvider, { AuthContext } from "../../AuthProvider/AuthProvider";
+// import AuthProvider, { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
-import { updateProfile } from "firebase/auth";
+// import { updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
-  const { createUser } = AuthProvider(AuthContext);
-  const navigate = useNavigate();
+  //   const { createUser } = AuthProvider(AuthContext);
+  //   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,36 +12,37 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data) => {
     const { email, password, name, photoURL } = data;
-    createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        handleUpdateUserInfo(user, name, photoURL)
-          .then(() => {
-            const saveUser = { name: name, email: email };
-            fetch("http://localhost:5000/users", {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify(saveUser),
-            })
-              .then((res) => res.json())
-              .then(() => {
-                navigate("/");
-              });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(email, password, name, photoURL);
+    // createUser(email, password)
+    //   .then((result) => {
+    //     const user = result.user;
+    //     console.log(user);
+    //     handleUpdateUserInfo(user, name, photoURL)
+    //       .then(() => {
+    //         const saveUser = { name: name, email: email };
+    //         fetch("http://localhost:5000/users", {
+    //           method: "POST",
+    //           headers: {
+    //             "content-type": "application/json",
+    //           },
+    //           body: JSON.stringify(saveUser),
+    //         })
+    //           .then((res) => res.json())
+    //           .then(() => {
+    //             navigate("/");
+    //           });
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
-  const handleUpdateUserInfo = (user, name, photoURL) => {
-    return updateProfile(user, { displayName: name, photoURL: photoURL });
-  };
+  //   const handleUpdateUserInfo = (user, name, photoURL) => {
+  //     return updateProfile(user, { displayName: name, photoURL: photoURL });
+  //   };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col md:flex-row">
