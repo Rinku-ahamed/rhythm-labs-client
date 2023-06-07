@@ -1,9 +1,19 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="navbar bg-base-100 px-3 lg:px-0 pt-5">
       <div className="navbar-start">
@@ -64,14 +74,16 @@ const Navbar = () => {
           )}
         </ul>
         {user ? (
-          <div>
-            <div className="bg-[#ef672a] text-white text-xl px-8 border py-2 transition duration-200 rounded ms-6 cursor-pointer hover:bg-white hover:text-[#ef672a] hover:scale-95 hover:border-[#ef672a] font-semibold">
+          <div className="flex gap-2">
+            <div
+              onClick={handleLogout}
+              className="bg-[#ef672a] text-white text-xl px-8 border py-2 transition duration-200 rounded ms-6 cursor-pointer hover:bg-white hover:text-[#ef672a] hover:scale-95 hover:border-[#ef672a] font-semibold"
+            >
               Logout
             </div>
-            <div className="avatar">
-              <div className="w-12">
-                <img src={user.photoUrl} />
-              </div>
+
+            <div className="w-12 h-12">
+              <img src={user.photoURL} className="rounded-full" />
             </div>
           </div>
         ) : (

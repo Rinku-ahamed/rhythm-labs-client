@@ -1,13 +1,42 @@
 import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
 import { FaGoogle } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const { loginUser, googleLogin } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    loginUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        // toast.success(` is login now!!`);
+        navigate(from);
+      })
+      .catch((error) => {
+        // toast.error(error.message);
+        console.log(error);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(() => {
+        navigate(from);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="flex gap-8">
@@ -55,8 +84,14 @@ const Login = () => {
                 <Button text="Login"></Button>
               </div>
             </form>
+            <p className="text-center text-xl text-[#f0aa42]">
+              Don not have a account? <Link to="/signup">Register now</Link>
+            </p>
             <div className="divider">OR</div>
-            <button className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-500 text-white py-2 rounded">
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-500 text-white py-2 rounded"
+            >
               <FaGoogle />
               <span className="text-xl"> Sign in With Google</span>
             </button>
