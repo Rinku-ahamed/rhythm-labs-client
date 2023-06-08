@@ -2,7 +2,6 @@ import useUsers from "../../../hooks/useUsers";
 
 const ManageUsers = () => {
   const { users } = useUsers();
-
   return (
     <div>
       <div className="overflow-x-auto">

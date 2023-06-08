@@ -13,9 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Toaster />
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <div className="max-w-screen-xl mx-auto relative">
-          <RouterProvider router={router}></RouterProvider>
-        </div>
+        <RouterProvider router={router}></RouterProvider>
       </QueryClientProvider>
     </React.StrictMode>
   </AuthProvider>
