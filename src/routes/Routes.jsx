@@ -7,6 +7,11 @@ import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import Dashboard from "../layouts/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import ManageUsers from "../pages/Dasboard/Admin/ManageUsers";
+import AdminRoute from "./AdminRoute";
+import ManageClasses from "../pages/Dasboard/Admin/ManageClasses";
+import MyEnrolledClasses from "../pages/Dasboard/Student/MyEnrolledClasses";
+import MySelectedClasses from "../pages/Dasboard/Student/MySelectedClasses";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +48,36 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "adminhome",
+        path: "manageusers",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manangeclasses",
+        element: (
+          <AdminRoute>
+            <ManageClasses />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "selectedclasses",
+        element: (
+          <PrivateRoute>
+            <MySelectedClasses />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "enrolledclasses",
+        element: (
+          <PrivateRoute>
+            <MyEnrolledClasses />
+          </PrivateRoute>
+        ),
       },
     ],
   },

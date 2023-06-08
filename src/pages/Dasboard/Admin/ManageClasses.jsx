@@ -1,4 +1,4 @@
-const ManageSchools = () => {
+const ManageClasses = () => {
   return (
     <div>
       <h2>Manage school </h2>
@@ -6,4 +6,4 @@ const ManageSchools = () => {
   );
 };
 
-export default ManageSchools;
+export default ManageClasses;
