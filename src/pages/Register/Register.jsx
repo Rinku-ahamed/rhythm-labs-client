@@ -18,7 +18,11 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    const { email, password, name, photoURL } = data;
+    const { email, password, confirmPassword, name, photoURL } = data;
+    if (password !== confirmPassword) {
+      toast.error("Password don't match with confirm password");
+      return;
+    }
     const formData = new FormData();
     const image = photoURL[0];
     formData.append("image", image);
@@ -89,12 +93,11 @@ const Register = () => {
           <img src="https://i.ibb.co/TLYbLkN/login.jpg" alt="" />
         </div>
         <div className="card w-full md:w-1/2 shadow-2xl bg-base-100 pb-10">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="card-body">
-              <h2 className="text-3xl text-center font-bold capitalize">
-                Register
-              </h2>
-
+          <div className="card-body">
+            <h2 className="text-3xl text-center font-bold capitalize">
+              Register
+            </h2>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -181,19 +184,20 @@ const Register = () => {
               <div className="form-control mt-6">
                 <Button text="Register"></Button>
               </div>
-            </div>
-          </form>
-          <p className="text-center text-xl text-[#f0aa42]">
-            Already registered? <Link to="/login">Go to log in</Link>
-          </p>
-          <div className="divider">OR</div>
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-500 text-white py-2 rounded"
-          >
-            <FaGoogle />
-            <span className="text-xl"> Sign in With Google</span>
-          </button>
+            </form>
+
+            <p className="text-center text-xl text-[#f0aa42]">
+              Already registered? <Link to="/login">Go to log in</Link>
+            </p>
+            <div className="divider">OR</div>
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-500 text-white py-2 rounded"
+            >
+              <FaGoogle />
+              <span className="text-xl"> Sign in With Google</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

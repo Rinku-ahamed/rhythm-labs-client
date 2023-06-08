@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useUsers from "../../hooks/useUsers";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const { users } = useUsers();
+  const userRole = users.find((usr) => usr.email === user?.email);
   const navigate = useNavigate();
   const handleLogout = () => {
     logoutUser()
       .then(() => {
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         console.error(error);
@@ -16,12 +19,12 @@ const Navbar = () => {
   };
   return (
     <div className="navbar bg-base-100 px-3 lg:px-0 pt-5">
-      <div className="navbar-start">
+      <div className="navbar-start w-1/3">
         <Link to="/" className="normal-case text-3xl font-bold text-[#141b29]">
           Rhythm <span className="text-[#ef672a]">Labs</span>
         </Link>
       </div>
-      <div className="navbar-end hidden lg:flex">
+      <div className="navbar-end hidden lg:flex w-2/3">
         <ul className="menu menu-horizontal px-1 text-xl font-semibold">
           <li>
             <NavLink
@@ -54,21 +57,18 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {user?.role === "student" && (
+          {userRole?.role === "student" && (
             <li>
-              {" "}
               <NavLink to="/dashboard/studenthome">Dashboard</NavLink>
             </li>
           )}
-          {user?.role === "instructor" && (
+          {userRole?.role === "instructor" && (
             <li>
-              {" "}
               <NavLink to="/dashboard/instructorhome">Dashboard</NavLink>
             </li>
           )}
-          {user?.role === "admin" && (
+          {userRole?.role === "admin" && (
             <li>
-              {" "}
               <NavLink to="/dashboard/adminhome">Dashboard</NavLink>
             </li>
           )}
