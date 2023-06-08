@@ -9,9 +9,9 @@ const Instructors = () => {
   );
   return (
     <div>
-      <PageCover />
+      <PageCover title="All Instructor" />
       <Container>
-        <div className="grid grid-cols-4 gap-4 mt-10">
+        <div className="grid grid-cols-4 gap-10 mt-10">
           {instructors.slice(0, 8).map((instructor) => (
             <div
               key={instructor._id}

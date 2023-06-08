@@ -9,7 +9,7 @@ const AdminRoute = ({ children }) => {
   if (loading || isAdminLoading) {
     return <h2>Loading</h2>;
   }
-  if (user && isAdmin) {
+  if (user && isAdmin.admin) {
     return children;
   }
   return (

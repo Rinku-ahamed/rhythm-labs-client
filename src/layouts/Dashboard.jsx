@@ -1,14 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
-import useUsers from "../hooks/useUsers";
-import useAuth from "../hooks/useAuth";
 import Container from "../shared/Container/Container";
+import useStudent from "../hooks/useStudent";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
   const { isAdmin } = useAdmin();
-  const { user } = useAuth();
-  const { users } = useUsers();
-  const userRole = users.find((usr) => usr.email === user.email);
+  const { isStudent } = useStudent();
+  const { isInstructor } = useInstructor();
   return (
     <div>
       <Container>
@@ -25,7 +24,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side bg-[#141b29]">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            {userRole.role === "student" && (
+            {isStudent?.student && (
               <ul className="menu p-4 w-80 h-full text-white">
                 {/* Sidebar content here */}
                 <li>
@@ -40,7 +39,7 @@ const Dashboard = () => {
                 </li>
               </ul>
             )}
-            {userRole.role === "instructor" && (
+            {isInstructor?.instructor && (
               <ul className="menu p-4 w-80 h-full text-white">
                 {/* Sidebar content here */}
                 <li>
@@ -51,7 +50,7 @@ const Dashboard = () => {
                 </li>
               </ul>
             )}
-            {isAdmin && (
+            {isAdmin?.admin && (
               <ul className="menu p-4 w-80 h-full text-white">
                 {/* admin content here */}
                 <li>

@@ -1,7 +1,34 @@
+import { toast } from "react-hot-toast";
 import useUsers from "../../../hooks/useUsers";
 
 const ManageUsers = () => {
-  const { users } = useUsers();
+  const { users, refetch } = useUsers();
+  const handleMakeInstructor = (id) => {
+    fetch(`http://localhost:5000/users/roleUpdate?id=${id}&role=instructor`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success(`Successfully updated user role!!`);
+        }
+      });
+  };
+  const handleMakeAdmin = (id) => {
+    fetch(`http://localhost:5000/users/roleUpdate?id=${id}&role=admin`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success(`Successfully updated user role!!`);
+        }
+      });
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -24,10 +51,16 @@ const ManageUsers = () => {
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <th>
-                  <button className="btn-primary py-2 px-3 text-white rounded-md me-3">
+                  <button
+                    onClick={() => handleMakeInstructor(user._id)}
+                    className="btn-primary py-2 px-3 text-white rounded-md me-3"
+                  >
                     Make Instructor
                   </button>
-                  <button className="btn-secondary py-2 px-3 text-white rounded-md">
+                  <button
+                    onClick={() => handleMakeAdmin(user._id)}
+                    className="btn-secondary py-2 px-3 text-white rounded-md"
+                  >
                     Make Admin
                   </button>
                 </th>
