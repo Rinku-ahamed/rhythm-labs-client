@@ -4,11 +4,14 @@ import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useUsers from "../../hooks/useUsers";
+import { toast } from "react-hot-toast";
 const Login = () => {
+  const { loginUser, googleLogin } = useAuth();
+  const { users } = useUsers();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  const { loginUser, googleLogin } = useAuth();
   const {
     register,
     handleSubmit,
@@ -30,8 +33,31 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {
-        navigate(from);
+      .then((result) => {
+        const user = result.user;
+        const exitingUser = users.find((usr) => usr.email === user.email);
+        const saveUser = {
+          email: user.email,
+          name: user.displayName,
+          role: "student",
+        };
+        if (!exitingUser) {
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                toast.success("Successfully added user info");
+              }
+              navigate(from, { replace: true });
+            });
+        }
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);

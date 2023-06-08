@@ -7,10 +7,12 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { FaGoogle } from "react-icons/fa";
 import { updateProfile } from "firebase/auth";
+import useUsers from "../../hooks/useUsers";
 const Register = () => {
   const { createUser, googleLogin, setLoading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const { users } = useUsers();
   const from = location?.state?.from?.pathname || "/";
   const {
     register,
@@ -79,8 +81,31 @@ const Register = () => {
   };
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {
-        navigate(from);
+      .then((result) => {
+        const user = result.user;
+        const exitingUser = users.find((usr) => usr?.email === user?.email);
+        const saveUser = {
+          email: user.email,
+          name: user.displayName,
+          role: "student",
+        };
+        if (!exitingUser) {
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                toast.success("Successfully added user info");
+              }
+              navigate(from, { replace: true });
+            });
+        }
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -98,80 +123,88 @@ const Register = () => {
               Register
             </h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  {...register("name", { required: true })}
-                  className="input input-bordered"
-                />
-                {errors.name && (
-                  <span className="text-red-600">Name field is required</span>
-                )}
+              <div className="lg:flex gap-3">
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    {...register("name", { required: true })}
+                    className="input input-bordered"
+                  />
+                  {errors.name && (
+                    <span className="text-red-600">Name field is required</span>
+                  )}
+                </div>
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="email"
+                    {...register("email", { required: true })}
+                    className="input input-bordered"
+                  />
+                  {errors.email && (
+                    <span className="text-red-600">
+                      Email field is required
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  {...register("email", { required: true })}
-                  className="input input-bordered"
-                />
-                {errors.email && (
-                  <span className="text-red-600">Email field is required</span>
-                )}
+              <div className="lg:flex gap-3 mt-4">
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/,
+                    })}
+                    className="input input-bordered"
+                  />
+                  {errors.password && (
+                    <span className="text-red-600">
+                      password field is required
+                    </span>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-600">
+                      Password must be 6 characters
+                    </p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-600">
+                      Password must have one Uppercase one special character,
+                      one capital letter.
+                    </p>
+                  )}
+                </div>
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Confirm Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Confirm password"
+                    {...register("confirmPassword", { required: true })}
+                    className="input input-bordered"
+                  />
+                  {errors.confirmPassword && (
+                    <span className="text-red-600">
+                      Confirm field is required
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  {...register("password", {
-                    required: true,
-                    minLength: 6,
-                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/,
-                  })}
-                  className="input input-bordered"
-                />
-                {errors.password && (
-                  <span className="text-red-600">
-                    password field is required
-                  </span>
-                )}
-                {errors.password?.type === "minLength" && (
-                  <p className="text-red-600">Password must be 6 characters</p>
-                )}
-                {errors.password?.type === "pattern" && (
-                  <p className="text-red-600">
-                    Password must have one Uppercase one special character, one
-                    capital letter.
-                  </p>
-                )}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Confirm Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="Confirm password"
-                  {...register("confirmPassword", { required: true })}
-                  className="input input-bordered"
-                />
-                {errors.confirmPassword && (
-                  <span className="text-red-600">
-                    Confirm field is required
-                  </span>
-                )}
-              </div>
-              <div className="form-control">
+              <div className="form-control mt-4">
                 <label className="label">
                   <span className="label-text">Upload Photo</span>
                 </label>
