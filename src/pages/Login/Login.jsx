@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUsers from "../../hooks/useUsers";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
 const Login = () => {
+  const [showHidePassword, setShowHidePassword] = useState(false);
   const { loginUser, googleLogin } = useAuth();
   const { users } = useUsers();
   const navigate = useNavigate();
@@ -65,11 +67,11 @@ const Login = () => {
   };
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="flex gap-8">
-        <div className=" w-1/2">
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="w-full md:w-1/2">
           <img src="https://i.ibb.co/TLYbLkN/login.jpg" alt="" />
         </div>
-        <div className="card shadow-2xl bg-base-100 w-1/2">
+        <div className="card shadow-2xl bg-base-100 w-full md:w-1/2">
           <div className="card-body">
             <h1 className="text-4xl font-bold text-center">Login now!</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -91,12 +93,20 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  {...register("password", { required: true })}
-                  className="input input-bordered"
-                />
+                <div className="relative">
+                  <input
+                    type={showHidePassword ? "text" : "password"}
+                    placeholder="password"
+                    {...register("password", { required: true })}
+                    className="input input-bordered w-full"
+                  />
+                  <span
+                    className="absolute right-0 bg-[#f0aa42] text-white cursor-pointer p-3 rounded-e text-lg h-full"
+                    onClick={() => setShowHidePassword(!showHidePassword)}
+                  >
+                    {showHidePassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
+                </div>
                 {errors.password?.type === "required" && (
                   <p role="alert">password is required</p>
                 )}
