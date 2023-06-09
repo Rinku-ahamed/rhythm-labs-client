@@ -67,7 +67,7 @@ const Navbar = () => {
               )}
               {userRole?.role === "instructor" && (
                 <li>
-                  <NavLink to="/dashboard/instructorhome">Dashboard</NavLink>
+                  <NavLink to="/dashboard/addclass">Dashboard</NavLink>
                 </li>
               )}
               {userRole?.role === "admin" && (

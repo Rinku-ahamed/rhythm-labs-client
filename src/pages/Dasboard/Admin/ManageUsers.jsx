@@ -53,12 +53,14 @@ const ManageUsers = () => {
                 <th>
                   <button
                     onClick={() => handleMakeInstructor(user._id)}
+                    disabled={user.role === "instructor" && true}
                     className="btn-primary py-2 px-3 text-white rounded-md me-3"
                   >
                     Make Instructor
                   </button>
                   <button
                     onClick={() => handleMakeAdmin(user._id)}
+                    disabled={user.role === "admin" && true}
                     className="btn-secondary py-2 px-3 text-white rounded-md"
                   >
                     Make Admin

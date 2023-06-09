@@ -17,6 +17,7 @@ const useAdmin = () => {
       return res.json();
     },
   });
+
   return { isAdmin, isAdminLoading, refetch };
 };
 

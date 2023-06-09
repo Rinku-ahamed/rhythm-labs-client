@@ -37,6 +37,11 @@ const Dashboard = () => {
                     My Enrolled Classes
                   </Link>
                 </li>
+                <div className="divide-x"></div>
+
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
               </ul>
             )}
             {isInstructor?.instructor && (
@@ -48,6 +53,11 @@ const Dashboard = () => {
                 <li>
                   <Link to="/dashboard/myclasses">My Classes</Link>
                 </li>
+                <div className="divide-x"></div>
+
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
               </ul>
             )}
             {isAdmin?.admin && (
@@ -58,6 +68,11 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <Link to="/dashboard/manangeclasses">Manage Classes</Link>
+                </li>
+                <div className="divide-x"></div>
+
+                <li>
+                  <Link to="/">Home</Link>
                 </li>
               </ul>
             )}
