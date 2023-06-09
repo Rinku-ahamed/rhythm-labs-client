@@ -1,9 +1,7 @@
 import { toast } from "react-hot-toast";
 import useClasses from "../../../hooks/useClasses";
-
 const ManageClasses = () => {
   const [classes, refetch] = useClasses();
-  console.log(classes);
   const handleApprovedStatus = (id) => {
     fetch(
       `http://localhost:5000/classes/statusUpdate?id=${id}&status=approved`,
@@ -34,6 +32,23 @@ const ManageClasses = () => {
           toast.success(`Successfully updated status!!`);
         }
       });
+  };
+
+  const handleFeedback = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    form.reset();
+    // const message = form.feedback.value;
+    // fetch(
+    //   `http://localhost:5000/classes/feedback?feed=${message}&id=${classId}`,
+    //   {
+    //     method: "PATCH",
+    //   }
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
   };
   return (
     <div>
@@ -79,13 +94,25 @@ const ManageClasses = () => {
                         ? true
                         : false
                     }
-                    className="btn-primary py-2 px-3 text-white rounded-md"
+                    className={`btn-primary py-2 px-3 text-white rounded-md ${
+                      item.status === "deny"
+                        ? "opacity-50"
+                        : item.status === "approved"
+                        ? "opacity-50"
+                        : ""
+                    }`}
                     onClick={() => handleApprovedStatus(item._id)}
                   >
                     Approve
                   </button>
                   <button
-                    className="btn-secondary py-2 px-3 text-white rounded-md"
+                    className={`btn-secondary py-2 px-3 text-white rounded-md ${
+                      item.status === "deny"
+                        ? "opacity-50"
+                        : item.status === "approved"
+                        ? "opacity-50"
+                        : ""
+                    }`}
                     disabled={
                       item.status === "approved"
                         ? true
@@ -97,9 +124,41 @@ const ManageClasses = () => {
                   >
                     Deny
                   </button>
-                  <button className="btn-primary py-2 px-3 text-white rounded-md">
+                  {/* TODO:very import word */}
+                  <button
+                    onClick={() =>
+                      document.getElementById("my_modal_1").showModal()
+                    }
+                    className="btn-primary py-2 px-3 text-white rounded-md"
+                  >
                     feedback
                   </button>
+                  <dialog id="my_modal_1" className="modal">
+                    <div method="dialog" className="modal-box">
+                      <div className="modal-action">
+                        <button
+                          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                          onClick={() =>
+                            document.getElementById("my_modal_1").close()
+                          }
+                        >
+                          X
+                        </button>
+                      </div>
+                      <form onSubmit={handleFeedback}>
+                        <textarea
+                          className="textarea textarea-bordered w-full"
+                          placeholder="Bio"
+                          name="feedback"
+                        ></textarea>
+                        <input
+                          type="submit"
+                          value="Submit"
+                          className="cursor-pointer"
+                        />
+                      </form>
+                    </div>
+                  </dialog>
                 </th>
               </tr>
             ))}

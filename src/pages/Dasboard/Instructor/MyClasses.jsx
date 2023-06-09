@@ -66,7 +66,33 @@ const MyClasses = () => {
               </td>
               <td>0</td>
               <td>
-                <button className="btn btn-primary btn-xs">See Feedback</button>
+                {item?.feedback && (
+                  <>
+                    <button
+                      className="btn btn-primary btn-xs py-2 px-3 text-white rounded-md"
+                      onClick={() =>
+                        document.getElementById("my_modal_1").showModal()
+                      }
+                    >
+                      See Feedback
+                    </button>
+                    <dialog id="my_modal_1" className="modal">
+                      <form method="dialog" className="modal-box">
+                        <p className="py-4">{item.feedback}</p>
+                        <div className="modal-action">
+                          <button
+                            className="btn"
+                            onClick={() =>
+                              document.getElementById("my_modal_1").close()
+                            }
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </form>
+                    </dialog>
+                  </>
+                )}
               </td>
               <th>
                 <button className="btn btn-warning btn-xs">Update</button>
