@@ -69,7 +69,7 @@ const Login = () => {
   return (
     <>
       <PageCover title="Login Page" />
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-200 mt-10">
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/2">
             <img src="https://i.ibb.co/TLYbLkN/login.jpg" alt="" />

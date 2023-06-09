@@ -1,11 +1,56 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import { toast } from "react-hot-toast";
 
 const AddClass = () => {
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    const {
+      classImage,
+      className,
+      instructorEmail,
+      instructorName,
+      price,
+      seats,
+    } = data;
+    const imageInfoData = new FormData();
+    const image = classImage[0];
+    imageInfoData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_IMGBB_UPLOAD_TOKEN
+    }`;
+    fetch(url, {
+      method: "POST",
+      body: imageInfoData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        const img = imageData?.data?.display_url;
+        const classInfo = {
+          className,
+          classImage: img,
+          instructorEmail,
+          instructorName,
+          price: parseFloat(price),
+          seats: parseInt(seats),
+          status: "pending",
+        };
+        fetch("http://localhost:5000/class", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(classInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            reset();
+            if (data.insertedId) {
+              toast.success("Successfully added a class and save in database");
+            }
+          });
+      });
   };
   return (
     <div>
@@ -65,7 +110,7 @@ const AddClass = () => {
               <span className="font-semibold text-lg">Available seats</span>
             </label>
             <input
-              type="text"
+              type="number"
               placeholder="Enter seats number"
               {...register("seats", { required: true })}
               className="input input-bordered"
