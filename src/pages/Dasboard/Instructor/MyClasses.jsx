@@ -1,6 +1,7 @@
 import { Bars } from "react-loader-spinner";
 import useClasses from "../../../hooks/useClasses";
 import useAuth from "../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -95,7 +96,9 @@ const MyClasses = () => {
                 )}
               </td>
               <th>
-                <button className="btn btn-warning btn-xs">Update</button>
+                <Link to={`/dashboard/updatedClass/${item._id}`}>
+                  <button className="btn btn-warning btn-xs">Update</button>
+                </Link>
               </th>
             </tr>
           ))}

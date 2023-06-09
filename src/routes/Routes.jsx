@@ -14,6 +14,8 @@ import MyEnrolledClasses from "../pages/Dasboard/Student/MyEnrolledClasses";
 import MySelectedClasses from "../pages/Dasboard/Student/MySelectedClasses";
 import AddClass from "../pages/Dasboard/Instructor/AddClass";
 import MyClasses from "../pages/Dasboard/Instructor/MyClasses";
+import InstructorRoute from "./InstructorRoute";
+import UpdatedClass from "../pages/Dasboard/Instructor/UpdatedClass";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -83,11 +85,29 @@ const router = createBrowserRouter([
       },
       {
         path: "addclass",
-        element: <AddClass />,
+        element: (
+          <InstructorRoute>
+            <AddClass />
+          </InstructorRoute>
+        ),
       },
       {
         path: "myclasses",
-        element: <MyClasses />,
+        element: (
+          <InstructorRoute>
+            <MyClasses />
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "updatedClass/:id",
+        element: (
+          <InstructorRoute>
+            <UpdatedClass />
+          </InstructorRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/classes/${params.id}`),
       },
     ],
   },
