@@ -1,0 +1,13 @@
+.each-slide-effect > .bg-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 650px;
+}
+.react-slideshow-container .nav:last-of-type {
+  right: 50px !important;
+}
+.react-slideshow-container .nav:first-of-type {
+  left: 50px !important;
+}
