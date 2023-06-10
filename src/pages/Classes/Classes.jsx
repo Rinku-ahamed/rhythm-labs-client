@@ -10,24 +10,48 @@ import { useNavigate } from "react-router-dom";
 
 const Classes = () => {
   const [classes] = useClasses();
+  const classData = classes.filter((cls) => cls.status === "approved");
   const { isAdmin } = useAdmin();
   const { isInstructor } = useInstructor();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const handleSelect = (id) => {
+  const handleSelect = (item) => {
     if (!user) {
       toast.error("Please login before select this course");
       navigate("/login");
       return;
     }
-    console.log(id);
+    const selectedClass = {
+      className: item.className,
+      classImage: item.classImage,
+      instructorEmail: item.instructorEmail,
+      instructorName: item.instructorName,
+      classId: item._id,
+      price: parseFloat(item.price),
+      seats: parseInt(item.seats),
+      userEmail: user.email,
+    };
+    fetch("http://localhost:5000/selectedClass", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(selectedClass),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Successfully added data in database");
+        }
+      });
   };
   return (
     <>
       <PageCover title="Classes"></PageCover>
       <Container>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-          {classes.map((cls) => (
+          {classData.map((cls) => (
             <div
               key={cls._id}
               className={`card ${
@@ -59,7 +83,7 @@ const Classes = () => {
                       Select
                     </button>
                   ) : (
-                    <div onClick={() => handleSelect(cls._id)}>
+                    <div onClick={() => handleSelect(cls)}>
                       <Button text="Select"></Button>
                     </div>
                   )}

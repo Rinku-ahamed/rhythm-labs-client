@@ -16,10 +16,12 @@ import AddClass from "../pages/Dasboard/Instructor/AddClass";
 import MyClasses from "../pages/Dasboard/Instructor/MyClasses";
 import InstructorRoute from "./InstructorRoute";
 import UpdatedClass from "../pages/Dasboard/Instructor/UpdatedClass";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
