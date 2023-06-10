@@ -7,6 +7,7 @@ import useInstructor from "../../hooks/useInstructor";
 import Container from "../../shared/Container/Container";
 import PageCover from "../../shared/PageCover/PageCover";
 import { useNavigate } from "react-router-dom";
+import useSelectedClass from "../../hooks/useSelectedClass";
 
 const Classes = () => {
   const [classes] = useClasses();
@@ -15,36 +16,46 @@ const Classes = () => {
   const { isInstructor } = useInstructor();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [selectedClass] = useSelectedClass();
   const handleSelect = (item) => {
+    const exitingClass = selectedClass.find(
+      (slClass) => slClass.className === item.className
+    );
+    console.log(exitingClass);
     if (!user) {
       toast.error("Please login before select this course");
       navigate("/login");
       return;
     }
-    const selectedClass = {
-      className: item.className,
-      classImage: item.classImage,
-      instructorEmail: item.instructorEmail,
-      instructorName: item.instructorName,
-      classId: item._id,
-      price: parseFloat(item.price),
-      seats: parseInt(item.seats),
-      userEmail: user.email,
-    };
-    fetch("http://localhost:5000/selectedClass", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(selectedClass),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          toast.success("Successfully added data in database");
-        }
-      });
+    if (exitingClass) {
+      toast.error("Already selected this class");
+      return;
+    } else {
+      const selectedItem = {
+        className: item.className,
+        classImage: item.classImage,
+        instructorEmail: item.instructorEmail,
+        instructorName: item.instructorName,
+        classId: item._id,
+        price: parseFloat(item.price),
+        seats: parseInt(item.seats),
+        userEmail: user.email,
+      };
+      fetch("http://localhost:5000/selectedClass", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectedItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            toast.success("Successfully added data in database");
+          }
+        });
+    }
   };
   return (
     <>
@@ -84,6 +95,7 @@ const Classes = () => {
                     </button>
                   ) : (
                     <div onClick={() => handleSelect(cls)}>
+                      {/* TODO:button disabled condition */}
                       <Button text="Select"></Button>
                     </div>
                   )}

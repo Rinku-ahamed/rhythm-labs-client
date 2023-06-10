@@ -1,10 +1,16 @@
+import { Link } from "react-router-dom";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 
 const MySelectedClasses = () => {
   const [selectedClass, refetch] = useSelectedClass();
-  console.log(selectedClass);
   const handleDelete = (id) => {
-    refetch();
+    fetch(`http://localhost:5000/selectedClass/${id}`, { method: "DELETE" })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+        console.log(data);
+      });
+
     console.log(id);
   };
   return (
@@ -48,7 +54,9 @@ const MySelectedClasses = () => {
                 >
                   Delete
                 </button>
-                <button className="btn btn-secondary btn-xs">Pay Now</button>
+                <Link to={`/dashboard/payment/${item.classId}`}>
+                  <button className="btn btn-secondary btn-xs">Pay Now</button>
+                </Link>
               </td>
             </tr>
           ))}

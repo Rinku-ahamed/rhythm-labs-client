@@ -17,6 +17,7 @@ import MyClasses from "../pages/Dasboard/Instructor/MyClasses";
 import InstructorRoute from "./InstructorRoute";
 import UpdatedClass from "../pages/Dasboard/Instructor/UpdatedClass";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Payment from "../pages/Dasboard/Student/Payment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -110,6 +111,14 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/classes/${params.id}`),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
     ],
   },
