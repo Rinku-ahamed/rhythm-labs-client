@@ -29,18 +29,23 @@ const Dashboard = () => {
                 {/* Sidebar content here */}
                 <li>
                   <Link to="/dashboard/selectedclasses">
+                    <img src="https://i.ibb.co/59w6Bf4/choice.png" alt="" />
                     My Selected Classes
                   </Link>
                 </li>
                 <li>
                   <Link to="/dashboard/enrolledclasses">
+                    <img src="https://i.ibb.co/kBMrfjd/enroll.png" alt="" />
                     My Enrolled Classes
                   </Link>
                 </li>
                 <div className="divide-x"></div>
 
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/">
+                    <img src="https://i.ibb.co/c3rTzW3/house.png" alt="" />
+                    Home
+                  </Link>
                 </li>
               </ul>
             )}
@@ -48,15 +53,27 @@ const Dashboard = () => {
               <ul className="menu p-4 w-80 h-full text-white">
                 {/* Sidebar content here */}
                 <li>
-                  <Link to="/dashboard/addclass">Add a Class</Link>
+                  <Link to="/dashboard/addclass">
+                    <img src="https://i.ibb.co/7kKnLxK/add.png" alt="" />
+                    Add a Class
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/myclasses">My Classes</Link>
+                  <Link to="/dashboard/myclasses">
+                    <img
+                      src="https://i.ibb.co/4p5tjDs/my-business.png"
+                      alt=""
+                    />
+                    My Classes
+                  </Link>
                 </li>
                 <div className="divide-x"></div>
 
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/">
+                    <img src="https://i.ibb.co/c3rTzW3/house.png" alt="" />
+                    Home
+                  </Link>
                 </li>
               </ul>
             )}
@@ -64,15 +81,26 @@ const Dashboard = () => {
               <ul className="menu p-4 w-80 h-full text-white">
                 {/* admin content here */}
                 <li>
-                  <Link to="/dashboard/manageusers">Manage Users</Link>
+                  <Link to="/dashboard/manageusers">
+                    <img
+                      src="https://i.ibb.co/hHXwZ1j/project-management.png"
+                      alt=""
+                    />
+                    Manage Users
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/manangeclasses">Manage Classes</Link>
+                  <Link to="/dashboard/manangeclasses">
+                    <img src="https://i.ibb.co/njr4bYM/training.png" alt="" />
+                    Manage Classes
+                  </Link>
                 </li>
-                <div className="divide-x"></div>
-
+                <div className="border border-slate-100 my-3"></div>
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/">
+                    <img src="https://i.ibb.co/c3rTzW3/house.png" alt="" />
+                    Home
+                  </Link>
                 </li>
               </ul>
             )}

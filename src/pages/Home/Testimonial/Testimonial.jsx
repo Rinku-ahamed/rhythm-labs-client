@@ -36,20 +36,44 @@ const Testimonial = () => {
               <div className="sm:flex justify-center gap-6 mb-6">
                 <div className="avatar">
                   <div className="w-20 h-20 rounded-full">
-                    <img src="https://i.ibb.co/jgscYX6/1-1.jpg" />
+                    <img src="https://i.ibb.co/PG9xkd6/download.jpg" />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-semibold">PAULA WILSON</h4>
+                  <h4 className="font-semibold">Emily Thompson</h4>
                   <p>Media Analyst / SkyNet</p>
                   <Rating style={{ maxWidth: 80 }} value="4" readOnly />
                 </div>
               </div>
               <p className="text-xl text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu
-                sem tempor, varius quam at, luctus dui. Mauris magna metus,
-                dapibus nec turpis vel, semper malesuada ante, commodo iacul
-                viverra.
+                Rhythm Labs has been a game-changer for my piano journey. The
+                instructors are incredibly knowledgeable and patient, guiding me
+                through complex rhythms with ease. The interactive lessons and
+                exercises have helped me improve my timing and precision. I
+                highly recommend Rhythm Labs to anyone looking to enhance their
+                musical skills!
+              </p>
+            </div>
+            <div className="p-10 px-20 shadow bg-white">
+              <div className="sm:flex justify-center gap-6 mb-6">
+                <div className="avatar">
+                  <div className="w-20 h-20 rounded-full">
+                    <img src="https://i.ibb.co/7VSLrXS/methode.jpg" />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <h4 className="font-semibold">David Patel</h4>
+                  <p>Media Analyst / SkyNet</p>
+                  <Rating style={{ maxWidth: 80 }} value="4" readOnly />
+                </div>
+              </div>
+              <p className="text-xl text-center">
+                As a drum enthusiast, Rhythm Labs has been my go-to resource for
+                honing my drumming skills. The variety of rhythmic patterns and
+                techniques covered in their lessons is impressive. The
+                instructors are talented and provide valuable feedback to help
+                me improve my drumming. Rhythm Labs has truly elevated my
+                drumming game!
               </p>
             </div>
             <div className="p-10 px-20 shadow bg-white">
@@ -60,36 +84,18 @@ const Testimonial = () => {
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-semibold">PAULA WILSON</h4>
+                  <h4 className="font-semibold">Sophia Miller</h4>
                   <p>Media Analyst / SkyNet</p>
                   <Rating style={{ maxWidth: 80 }} value="4" readOnly />
                 </div>
               </div>
               <p className="text-xl text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu
-                sem tempor, varius quam at, luctus dui. Mauris magna metus,
-                dapibus nec turpis vel, semper malesuada ante, commodo iacul
-                viverra.
-              </p>
-            </div>
-            <div className="p-10 px-20 shadow bg-white">
-              <div className="sm:flex justify-center gap-6 mb-6">
-                <div className="avatar">
-                  <div className="w-20 h-20 rounded-full">
-                    <img src="https://i.ibb.co/jgscYX6/1-1.jpg" />
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="font-semibold">PAULA WILSON</h4>
-                  <p>Media Analyst / SkyNet</p>
-                  <Rating style={{ maxWidth: 80 }} value="4" readOnly />
-                </div>
-              </div>
-              <p className="text-xl text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu
-                sem tempor, varius quam at, luctus dui. Mauris magna metus,
-                dapibus nec turpis vel, semper malesuada ante, commodo iacul
-                viverra.
+                Rhythm Labs has been instrumental in my guitar learning journey.
+                The comprehensive curriculum and well-structured lessons have
+                enabled me to understand complex rhythm patterns and
+                syncopation. The instructors are passionate and supportive,
+                always pushing me to achieve my best. Rhythm Labs is a fantastic
+                platform for aspiring guitarists!
               </p>
             </div>
           </Slider>

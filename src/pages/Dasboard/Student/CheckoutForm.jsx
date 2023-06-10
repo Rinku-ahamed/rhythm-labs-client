@@ -73,6 +73,12 @@ const CheckoutForm = ({ refetch, price, enrolledId }) => {
         status: "service pending",
       };
       axiosSecure.post("/payments", payment).then((res) => {
+        console.log(enrolledId);
+        axiosSecure
+          .patch(`/classes/seatsUpdate?id=${enrolledId}`)
+          .then((data) => {
+            console.log(data);
+          });
         if (res.data.insertedId) {
           refetch();
           toast.success("payment success");

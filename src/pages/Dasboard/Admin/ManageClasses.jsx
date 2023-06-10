@@ -1,10 +1,9 @@
 import { toast } from "react-hot-toast";
 import useClasses from "../../../hooks/useClasses";
-import Modal from "react-modal";
 import { useState } from "react";
 const ManageClasses = () => {
   const [classes, refetch] = useClasses();
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [classId, setClassId] = useState("");
   const handleApprovedStatus = (id) => {
     fetch(
       `http://localhost:5000/classes/statusUpdate?id=${id}&status=approved`,
@@ -36,35 +35,24 @@ const ManageClasses = () => {
         }
       });
   };
-  let subtitle;
-  // const handleFeedback = (event) => {
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   form.reset();
-  //   // const message = form.feedback.value;
-  //   // fetch(
-  //   //   `http://localhost:5000/classes/feedback?feed=${message}&id=${classId}`,
-  //   //   {
-  //   //     method: "PATCH",
-  //   //   }
-  //   // )
-  //   //   .then((res) => res.json())
-  //   //   .then((data) => {
-  //   //     console.log(data);
-  //   //   });
-  // };
-  function openModal() {
-    setIsOpen(true);
-  }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const handleFeedback = (event) => {
+    console.log(classId);
+    event.preventDefault();
+    const form = event.target;
+    const message = form.feedback.value;
+    fetch(
+      `http://localhost:5000/classes/feedback?feed=${message}&id=${classId}`,
+      {
+        method: "PATCH",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        form.reset();
+        console.log(data);
+      });
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -140,29 +128,42 @@ const ManageClasses = () => {
                     Deny
                   </button>
                   {/* TODO:very import word */}
-                  <button
-                    onClick={openModal}
-                    className="btn-primary py-2 px-3 text-white rounded-md"
-                  >
-                    feedback
-                  </button>
-                  <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    contentLabel="Example Modal"
-                  >
-                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                    <button onClick={closeModal}>close</button>
-                    <div>I am a modal</div>
-                    <form>
-                      <input />
-                      <button>tab navigation</button>
-                      <button>stays</button>
-                      <button>inside</button>
-                      <button>the modal</button>
-                    </form>
-                  </Modal>
+                  <div onClick={() => setClassId(item._id)}>
+                    <button
+                      onClick={() =>
+                        document.getElementById("my_modal_1").showModal()
+                      }
+                      className="btn-primary py-2 px-3 text-white rounded-md"
+                    >
+                      feedback
+                    </button>
+                  </div>
+                  <dialog id="my_modal_1" className="modal">
+                    <div method="dialog" className="modal-box">
+                      <div className="modal-action">
+                        <button
+                          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                          onClick={() =>
+                            document.getElementById("my_modal_1").close()
+                          }
+                        >
+                          X
+                        </button>
+                      </div>
+                      <form onSubmit={handleFeedback}>
+                        <textarea
+                          className="textarea textarea-bordered w-full"
+                          placeholder="Bio"
+                          name="feedback"
+                        ></textarea>
+                        <input
+                          type="submit"
+                          value="Submit"
+                          className="cursor-pointer"
+                        />
+                      </form>
+                    </div>
+                  </dialog>
                 </th>
               </tr>
             ))}
