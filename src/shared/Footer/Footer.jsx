@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <footer className=" bg-[#141b29]  mt-10">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-6 pt-10 pb-16 text-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-10 pb-16 text-white">
             <div>
               <Link
                 to="/"
