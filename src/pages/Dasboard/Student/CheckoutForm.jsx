@@ -4,7 +4,7 @@ import "./CheckoutForm.css";
 import { toast } from "react-hot-toast";
 import useAxios from "../../../hooks/useAxios";
 import useAuth from "../../../hooks/useAuth";
-const CheckoutForm = ({ refetch, price, enrolledId }) => {
+const CheckoutForm = ({ refetch, price, selectedCls }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -18,7 +18,6 @@ const CheckoutForm = ({ refetch, price, enrolledId }) => {
     if (price >= 1) {
       axiosSecure.post("/create-payment-intent", { price }).then((res) => {
         setClientSecret(res.data.clientSecret);
-        console.log(res.data.clientSecret);
       });
     }
   }, [price]);
@@ -33,14 +32,14 @@ const CheckoutForm = ({ refetch, price, enrolledId }) => {
     if (card === null) {
       return;
     }
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
     if (error) {
       setCardError(error.message);
     } else {
-      console.log("payment method ", paymentMethod);
+      // console.log("payment method ", paymentMethod);
       setCardError("");
     }
     setProcessing(true);
@@ -68,18 +67,22 @@ const CheckoutForm = ({ refetch, price, enrolledId }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
-        enrolledId,
+        selectedClassId: selectedCls._id,
+        enrolledClassId: selectedCls.classId,
+        className: selectedCls.className,
+        classImage: selectedCls.classImage,
+        instructorEmail: selectedCls.instructorEmail,
+        instructorName: selectedCls.instructorName,
         date: new Date(),
         status: "service pending",
       };
       axiosSecure.post("/payments", payment).then((res) => {
-        console.log(enrolledId);
         axiosSecure
-          .patch(`/classes/seatsUpdate?id=${enrolledId}`)
+          .patch(`/classes/seatsUpdate?id=${selectedCls?.classId}`)
           .then((data) => {
             console.log(data);
           });
-        if (res.data.insertedId) {
+        if (res.data.result.insertedId) {
           refetch();
           toast.success("payment success");
         }

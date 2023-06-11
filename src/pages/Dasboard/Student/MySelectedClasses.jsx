@@ -67,7 +67,7 @@ const MySelectedClasses = () => {
                 >
                   Delete
                 </button>
-                <Link to={`/dashboard/payment/${item.classId}`}>
+                <Link to={`/dashboard/payment/${item?._id}`}>
                   <button className="btn btn-secondary btn-xs">Pay Now</button>
                 </Link>
               </td>

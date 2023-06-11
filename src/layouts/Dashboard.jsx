@@ -3,11 +3,13 @@ import useAdmin from "../hooks/useAdmin";
 import Container from "../shared/Container/Container";
 import useStudent from "../hooks/useStudent";
 import useInstructor from "../hooks/useInstructor";
+import useSelectedClass from "../hooks/useSelectedClass";
 
 const Dashboard = () => {
   const { isAdmin } = useAdmin();
   const { isStudent } = useStudent();
   const { isInstructor } = useInstructor();
+  const [selectedClass] = useSelectedClass();
   return (
     <div>
       <Container>
@@ -30,13 +32,22 @@ const Dashboard = () => {
                 <li>
                   <Link to="/dashboard/selectedclasses">
                     <img src="https://i.ibb.co/59w6Bf4/choice.png" alt="" />
-                    My Selected Classes
+                    My Selected Classes ({selectedClass.length})
                   </Link>
                 </li>
                 <li>
                   <Link to="/dashboard/enrolledclasses">
                     <img src="https://i.ibb.co/kBMrfjd/enroll.png" alt="" />
                     My Enrolled Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/paymentHistory">
+                    <img
+                      src="https://i.ibb.co/sJM64Nc/transaction-history.png"
+                      alt=""
+                    />
+                    Payment History
                   </Link>
                 </li>
                 <div className="divide-x"></div>

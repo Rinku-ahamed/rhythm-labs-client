@@ -9,6 +9,7 @@ const Payment = () => {
   const [selectedClass, refetch] = useSelectedClass();
   const totalPrice = selectedClass.reduce((prev, next) => prev + next.price, 0);
   const price = parseFloat(totalPrice.toFixed(2));
+  const classItem = selectedClass.find((cls) => cls._id === id);
   return (
     <div>
       <h3 className="text-3xl text-center">PAYMENT</h3>
@@ -17,7 +18,7 @@ const Payment = () => {
           <CheckoutForm
             price={price}
             refetch={refetch}
-            enrolledId={id}
+            selectedCls={classItem}
           ></CheckoutForm>
         </Elements>
       </div>

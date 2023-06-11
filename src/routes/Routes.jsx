@@ -18,6 +18,7 @@ import InstructorRoute from "./InstructorRoute";
 import UpdatedClass from "../pages/Dasboard/Instructor/UpdatedClass";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Payment from "../pages/Dasboard/Student/Payment";
+import PaymentHistory from "../pages/Dasboard/Student/PaymentHistory";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -117,6 +118,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Payment />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "paymentHistory",
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
           </PrivateRoute>
         ),
       },
