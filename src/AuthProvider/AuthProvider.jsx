@@ -10,11 +10,13 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [axiosSecure] = useAxios();
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const createUser = (email, password) => {
@@ -38,22 +40,22 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log(currentUser);
       // Get the token
-      //   if (currentUser) {
-      //     axios
-      //       .post("http://localhost:5000/jwt", { email: currentUser.email })
-      //       .then((response) => {
-      //         const { token } = response.data;
-      //         if (token) {
-      //           localStorage.setItem("access-token", token);
-      //         }
-      //       })
-      //       .catch((error) => {
-      //         // Handle error while getting the token
-      //         console.error("Error getting token:", error);
-      //       });
-      //   } else {
-      //     localStorage.removeItem("access-token");
-      //   }
+      if (currentUser) {
+        axiosSecure
+          .post("/jwt", { email: currentUser.email })
+          .then((response) => {
+            const { token } = response.data;
+            if (token) {
+              localStorage.setItem("access-token", token);
+            }
+          })
+          .catch((error) => {
+            // Handle error while getting the token
+            console.error("Error getting token:", error);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
     });
 
     return () => {

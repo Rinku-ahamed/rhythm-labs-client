@@ -65,14 +65,14 @@ const CheckoutForm = ({ refetch, price, selectedCls }) => {
       // save payment information to the server
       const payment = {
         email: user?.email,
-        transactionId: paymentIntent.id,
+        transactionId: paymentIntent?.id,
         price,
-        selectedClassId: selectedCls._id,
-        enrolledClassId: selectedCls.classId,
-        className: selectedCls.className,
-        classImage: selectedCls.classImage,
-        instructorEmail: selectedCls.instructorEmail,
-        instructorName: selectedCls.instructorName,
+        selectedClassId: selectedCls?._id,
+        enrolledClassId: selectedCls?.classId,
+        className: selectedCls?.className,
+        classImage: selectedCls?.classImage,
+        instructorEmail: selectedCls?.instructorEmail,
+        instructorName: selectedCls?.instructorName,
         date: new Date(),
         status: "service pending",
       };

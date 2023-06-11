@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxios from "../../../hooks/useAxios";
-
+import moment from "moment";
 const PaymentHistory = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxios();
@@ -14,6 +14,11 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
+  const dateFormat = () => {
+    const timestamp = "2023-06-11T05:17:44.680Z";
+    const formattedDate = moment(timestamp).format("YYYY/M/D");
+    return formattedDate;
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -48,7 +53,7 @@ const PaymentHistory = () => {
               <td>{item.instructorName}</td>
               <td>{item.instructorEmail}</td>
               <td>${item.price}</td>
-              <td>{item.date}</td>
+              <td>{dateFormat()}</td>
               <td>{item.transactionId}</td>
             </tr>
           ))}

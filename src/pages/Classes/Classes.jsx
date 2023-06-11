@@ -10,17 +10,22 @@ import { useNavigate } from "react-router-dom";
 import useSelectedClass from "../../hooks/useSelectedClass";
 
 const Classes = () => {
+  const [selectedClass, refetch, isLoading] = useSelectedClass();
   const [classes] = useClasses();
   const classData = classes.filter((cls) => cls.status === "approved");
   const { isAdmin } = useAdmin();
   const { isInstructor } = useInstructor();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [selectedClass] = useSelectedClass();
+  if (isLoading) {
+    return;
+  }
+  console.log(selectedClass);
   const handleSelect = (item) => {
     const exitingClass = selectedClass.find(
-      (slClass) => slClass.className === item.className
+      (slClass) => slClass.classId === item._id
     );
+    console.log(item);
     console.log(exitingClass);
     if (!user) {
       toast.error("Please login before select this course");
@@ -50,7 +55,7 @@ const Classes = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          refetch();
           if (data.insertedId) {
             toast.success("Successfully added data in database");
           }
