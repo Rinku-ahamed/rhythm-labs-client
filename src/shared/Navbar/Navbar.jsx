@@ -24,8 +24,11 @@ const Navbar = () => {
     <header className="absolute top-0 w-full z-30 bg-black bg-opacity-30">
       <Container>
         <div className="navbar justify-between px-4 lg:px-0 py-5">
-          <div className="navbar-start w-1/3">
-            <Link to="/" className="normal-case text-3xl font-bold text-white">
+          <div className="navbar-start w-1/2 md:w-1/3">
+            <Link
+              to="/"
+              className="normal-case text-xl sm:text-2xl md:text-3xl font-bold text-white"
+            >
               Rhythm <span className="text-[#ef672a]">Labs</span>
             </Link>
           </div>
@@ -87,8 +90,8 @@ const Navbar = () => {
                   Logout
                 </div>
 
-                <div className="w-12 h-12">
-                  <img src={user.photoURL} className="rounded-full" />
+                <div>
+                  <img src={user.photoURL} className="rounded-full w-12 h-12" />
                 </div>
               </div>
             ) : (
@@ -121,7 +124,7 @@ const Navbar = () => {
               showHide ? "w-[100%] opacity-100" : "w-[0px] opacity-0"
             }  left-0 top-20 h-[100vh] `}
           >
-            <div className="px-12 pt-5">
+            <div className="px-6 sm:px-12 pt-5">
               <ul className="flex gap-4 flex-col px-1 text-xl font-semibold text-slate-200">
                 <li>
                   <NavLink
@@ -179,8 +182,11 @@ const Navbar = () => {
                     Logout
                   </div>
 
-                  <div className="w-12 h-12">
-                    <img src={user.photoURL} className="rounded-full" />
+                  <div>
+                    <img
+                      src={user.photoURL}
+                      className="rounded-full w-12 h-12"
+                    />
                   </div>
                 </div>
               ) : (

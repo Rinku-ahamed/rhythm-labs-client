@@ -4,6 +4,7 @@ import Container from "../../../shared/Container/Container";
 import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 import ClassCard from "./ClassCard";
 import useAuth from "../../../hooks/useAuth";
+import ShowAnimation from "../../../components/ShowAnimation/ShowAnimation";
 
 const PopularClasses = () => {
   const { darkLight } = useAuth();
@@ -20,10 +21,13 @@ const PopularClasses = () => {
       className={`pt-20 pb-20 ${darkLight && "bg-[#0d1527] text-white"}`}
     >
       <Container>
-        <SectionTitle
-          subTitle={"Our Classes"}
-          title={"Most Popular Classes"}
-        ></SectionTitle>
+        <ShowAnimation>
+          <SectionTitle
+            subTitle={"Our Classes"}
+            title={"Most Popular Classes"}
+          ></SectionTitle>
+        </ShowAnimation>
+
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {popularClasses.map((pClass) => (
             <ClassCard key={pClass._id} item={pClass}></ClassCard>

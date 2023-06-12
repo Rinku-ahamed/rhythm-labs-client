@@ -16,10 +16,10 @@ const Banner = () => {
           }}
         >
           <div className="text-center px-10 md:px-10 md:w-2/3">
-            <h3 className="text-white text-4xl md:text-6xl">
+            <h3 className="text-white text-2xl sm:text-4xl md:text-6xl">
               Discover the Magic of Music
             </h3>
-            <p className="mb-8 text-slate-300 mt-5 text-lg">
+            <p className="mb-8 text-slate-300 mt-5 text-[16px] sm:text-lg">
               Rhythm Labs is an innovative music website where the magic of
               rhythm takes center stage. Our mission is to provide a dynamic and
               immersive learning environment for aspiring musicians.{" "}

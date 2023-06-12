@@ -39,7 +39,7 @@ const Register = () => {
       .then((res) => res.json())
       .then((imgData) => {
         console.log(imgData);
-        const imageUrl = imgData.data.display_url;
+        const imageUrl = imgData?.data?.display_url;
         createUser(email, password)
           .then((result) => {
             const user = result.user;

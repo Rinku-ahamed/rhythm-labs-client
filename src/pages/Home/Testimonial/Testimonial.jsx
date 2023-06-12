@@ -25,17 +25,17 @@ const Testimonial = () => {
       <div className="hero-overlay bg-opacity-60"></div>
       <Container>
         <div className="text-center pt-16 pb-14">
-          <h4 className="text-3xl text-slate-200 font-semibold">
+          <h4 className="text-2xl md:text-3xl text-slate-200 font-semibold">
             Testimonials
           </h4>
-          <h3 className="text-6xl font-bold text-white">
+          <h3 className="text-4xl md:text-6xl font-bold text-white">
             What our clients say
           </h3>
         </div>
-        <div className="px-10">
+        <div className="md:px-10">
           <Slider {...settings}>
-            <div className="p-10 px-20 shadow bg-white">
-              <div className="sm:flex justify-center gap-6 mb-6">
+            <div className="p-10 px-6 md:px-20 shadow bg-white">
+              <div className="flex justify-center gap-6 mb-6">
                 <div className="avatar">
                   <div className="w-20 h-20 rounded-full">
                     <img src="https://i.ibb.co/PG9xkd6/download.jpg" />
@@ -56,8 +56,8 @@ const Testimonial = () => {
                 musical skills!
               </p>
             </div>
-            <div className="p-10 px-20 shadow bg-white">
-              <div className="sm:flex justify-center gap-6 mb-6">
+            <div className="p-10 px-6 md:px-20 shadow bg-white">
+              <div className="flex justify-center gap-6 mb-6">
                 <div className="avatar">
                   <div className="w-20 h-20 rounded-full">
                     <img src="https://i.ibb.co/7VSLrXS/methode.jpg" />
@@ -78,8 +78,8 @@ const Testimonial = () => {
                 drumming game!
               </p>
             </div>
-            <div className="p-10 px-20 shadow bg-white">
-              <div className="sm:flex justify-center gap-6 mb-6">
+            <div className="p-10 px-6 md:px-20 shadow bg-white">
+              <div className="flex justify-center gap-6 mb-6">
                 <div className="avatar">
                   <div className="w-20 h-20 rounded-full">
                     <img src="https://i.ibb.co/jgscYX6/1-1.jpg" />
