@@ -8,7 +8,7 @@ const useUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users", {
+      const res = await fetch("https://rhythm-labs-server.vercel.app/users", {
         headers: {
           authorization: `bearer ${localStorage.getItem("access-token")}`,
         },

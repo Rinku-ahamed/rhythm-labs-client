@@ -12,7 +12,9 @@ const PopularClasses = () => {
   const { data: popularClasses = [] } = useQuery({
     queryKey: ["isPopularClass"],
     queryFn: async () => {
-      const res = await axiosSecure.get("http://localhost:5000/popularClasses");
+      const res = await axiosSecure.get(
+        "https://rhythm-labs-server.vercel.app/popularClasses"
+      );
       return res.data;
     },
   });

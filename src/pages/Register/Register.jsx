@@ -51,7 +51,7 @@ const Register = () => {
                   image: user.photoURL,
                   role: "student",
                 };
-                fetch("http://localhost:5000/users", {
+                fetch("https://rhythm-labs-server.vercel.app/users", {
                   method: "POST",
                   headers: {
                     "content-type": "application/json",
@@ -92,7 +92,7 @@ const Register = () => {
           role: "student",
         };
         if (!exitingUser) {
-          fetch("http://localhost:5000/users", {
+          fetch("https://rhythm-labs-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

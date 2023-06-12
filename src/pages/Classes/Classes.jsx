@@ -46,7 +46,7 @@ const Classes = () => {
         seats: parseInt(item.seats),
         userEmail: user.email,
       };
-      fetch("http://localhost:5000/selectedClass", {
+      fetch("https://rhythm-labs-server.vercel.app/selectedClass", {
         method: "POST",
         headers: {
           "content-type": "application/json",

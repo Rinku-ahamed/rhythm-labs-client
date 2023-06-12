@@ -9,7 +9,7 @@ const useSelectedClass = () => {
   } = useQuery(["isSelectedClasses"], {
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/selectedClass?email=${user?.email}`
+        `https://rhythm-labs-server.vercel.app/selectedClass?email=${user?.email}`
       );
       return res.json();
     },

@@ -4,9 +4,12 @@ import useUsers from "../../../hooks/useUsers";
 const ManageUsers = () => {
   const { users, refetch } = useUsers();
   const handleMakeInstructor = (id) => {
-    fetch(`http://localhost:5000/users/roleUpdate?id=${id}&role=instructor`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://rhythm-labs-server.vercel.app/users/roleUpdate?id=${id}&role=instructor`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         refetch();
@@ -17,9 +20,12 @@ const ManageUsers = () => {
       });
   };
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/roleUpdate?id=${id}&role=admin`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://rhythm-labs-server.vercel.app/users/roleUpdate?id=${id}&role=admin`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         refetch();

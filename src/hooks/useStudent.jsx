@@ -7,7 +7,7 @@ const useStudent = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/student/${user?.email}`
+        `https://rhythm-labs-server.vercel.app/users/student/${user?.email}`
       );
       return res.json();
     },

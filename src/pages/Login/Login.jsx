@@ -45,7 +45,7 @@ const Login = () => {
           role: "student",
         };
         if (!exitingUser) {
-          fetch("http://localhost:5000/users", {
+          fetch("https://rhythm-labs-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

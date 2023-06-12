@@ -37,7 +37,7 @@ const AddClass = () => {
           status: "pending",
           totalEnrolledStudents: 0,
         };
-        fetch("http://localhost:5000/class", {
+        fetch("https://rhythm-labs-server.vercel.app/class", {
           method: "POST",
           headers: {
             "content-type": "application/json",

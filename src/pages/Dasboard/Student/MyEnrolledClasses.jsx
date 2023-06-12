@@ -8,7 +8,7 @@ const MyEnrolledClasses = () => {
     queryKey: ["enrolled"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `http://localhost:5000/enrolledClass/${user?.email}`
+        `https://rhythm-labs-server.vercel.app/enrolledClass/${user?.email}`
       );
       return res.data;
     },

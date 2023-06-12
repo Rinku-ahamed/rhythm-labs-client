@@ -6,7 +6,7 @@ const ManageClasses = () => {
   const [classId, setClassId] = useState("");
   const handleApprovedStatus = (id) => {
     fetch(
-      `http://localhost:5000/classes/statusUpdate?id=${id}&status=approved`,
+      `https://rhythm-labs-server.vercel.app/classes/statusUpdate?id=${id}&status=approved`,
       {
         method: "PATCH",
       }
@@ -22,9 +22,12 @@ const ManageClasses = () => {
       });
   };
   const handleApprovedDeny = (id) => {
-    fetch(`http://localhost:5000/classes/statusUpdate?id=${id}&status=deny`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://rhythm-labs-server.vercel.app/classes/statusUpdate?id=${id}&status=deny`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -42,7 +45,7 @@ const ManageClasses = () => {
     const form = event.target;
     const message = form.feedback.value;
     fetch(
-      `http://localhost:5000/classes/feedback?feed=${message}&id=${classId}`,
+      `https://rhythm-labs-server.vercel.app/classes/feedback?feed=${message}&id=${classId}`,
       {
         method: "PATCH",
       }

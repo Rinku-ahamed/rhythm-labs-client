@@ -12,7 +12,7 @@ const useAdmin = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/admin/${user?.email}`
+        `https://rhythm-labs-server.vercel.app/users/admin/${user?.email}`
       );
       return res.json();
     },

@@ -7,7 +7,7 @@ const useClasses = () => {
     isLoading,
   } = useQuery(["isClasses"], {
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/classes");
+      const res = await fetch("https://rhythm-labs-server.vercel.app/classes");
       return res.json();
     },
   });
