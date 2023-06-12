@@ -26,15 +26,14 @@ const PopularInstructor = () => {
           {instructors.slice(0, 8).map((instructor) => (
             <div
               key={instructor._id}
-              className="transition duration-300 hover:shadow-xl p-4 text-center"
+              className="transition duration-300 hover:shadow-xl md:p-4 text-center"
             >
-              <ShowAnimation>
-                <img
-                  src={instructor.image}
-                  alt=""
-                  className=" border-2 border-orange-400 p-2 transition duration-300 hover:border-[4px] hover:p-1 w-2/3 mx-auto md:w-full h-[360px] object-cover"
-                />
-              </ShowAnimation>
+              <img
+                src={instructor.image}
+                alt=""
+                className=" border-2 border-orange-400 p-2 transition duration-300 hover:border-[4px] hover:p-1 mx-auto first-line:w-full h-[360px] object-cover"
+              />
+
               <ShowAnimation>
                 <h2
                   className={`text-2xl mt-2 ${

@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { BsFillEnvelopeOpenFill, BsPhone } from "react-icons/bs";
 import { FaLocationArrow } from "react-icons/fa";
 import Container from "../Container/Container";
+import Newsletter from "./Newsletter";
 const Footer = () => {
   return (
     <>
-      <footer className=" bg-[#141b29]">
+      <Newsletter></Newsletter>
+      <footer className=" bg-[#141b29] -mt-14">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-10 pb-16 text-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-28 pb-16 text-white">
             <div>
               <Link
                 to="/"
@@ -56,7 +58,7 @@ const Footer = () => {
             </div>
           </div>
         </Container>
-        <div className="bg-[#0d1527] text-slate-300 text-center py-5">
+        <div className="bg-[#0d1527] text-slate-300 text-center py-5 px-4 md:px-0">
           Rhythm Labs © 2023. All rights reserved
         </div>
       </footer>
