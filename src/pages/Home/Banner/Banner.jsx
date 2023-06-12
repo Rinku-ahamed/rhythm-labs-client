@@ -15,8 +15,10 @@ const Banner = () => {
             backgroundImage: `linear-gradient(#00000096,#00000096),url(https://i.ibb.co/PcvfjCS/SLIDE2.jpg)`,
           }}
         >
-          <div className="text-center md:w-2/3">
-            <h3 className="text-white text-6xl">Discover the Magic of Music</h3>
+          <div className="text-center px-10 md:px-10 md:w-2/3">
+            <h3 className="text-white text-4xl md:text-6xl">
+              Discover the Magic of Music
+            </h3>
             <p className="mb-8 text-slate-300 mt-5 text-lg">
               Rhythm Labs is an innovative music website where the magic of
               rhythm takes center stage. Our mission is to provide a dynamic and

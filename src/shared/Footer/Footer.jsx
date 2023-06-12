@@ -5,7 +5,7 @@ import Container from "../Container/Container";
 const Footer = () => {
   return (
     <>
-      <footer className=" bg-[#141b29]  mt-10">
+      <footer className=" bg-[#141b29]">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-10 pb-16 text-white">
             <div>

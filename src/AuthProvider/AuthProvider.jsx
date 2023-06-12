@@ -14,6 +14,7 @@ import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
+  const [darkLight, setDarkLight] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [axiosSecure] = useAxios();
@@ -72,6 +73,8 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     googleLogin,
     setLoading,
+    darkLight,
+    setDarkLight,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

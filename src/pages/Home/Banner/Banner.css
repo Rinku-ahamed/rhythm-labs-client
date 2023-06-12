@@ -5,6 +5,20 @@
   background-size: cover;
   height: 650px;
 }
+
+@media (max-width: 768px) {
+  .each-slide-effect > .bg-image {
+    height: 600px;
+  }
+  .react-slideshow-container .nav:first-of-type {
+    left: 102px !important;
+    bottom: 74px !important;
+  }
+  .react-slideshow-container .nav:last-of-type {
+    right: 102px !important;
+    bottom: 74px !important;
+  }
+}
 .react-slideshow-container .nav:last-of-type {
   right: 50px !important;
 }

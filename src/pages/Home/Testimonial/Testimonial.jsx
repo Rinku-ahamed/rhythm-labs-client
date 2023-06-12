@@ -4,7 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import useAuth from "../../../hooks/useAuth";
 const Testimonial = () => {
+  const { darkLight } = useAuth();
   var settings = {
     dots: false,
     infinite: true,
@@ -18,7 +20,7 @@ const Testimonial = () => {
         backgroundImage:
           "url(https://i.ibb.co/MSqzBqC/portrait-woman-singing-microphone.jpg)",
       }}
-      className="mt-20 pb-20"
+      className={`pb-20 ${darkLight && "bg-[#0d1527]"}`}
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <Container>

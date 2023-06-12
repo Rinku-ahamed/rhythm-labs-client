@@ -10,7 +10,7 @@ const ClassCard = ({ item }) => {
   const [selectedClass, refetch, isLoading] = useSelectedClass();
   const { isAdmin } = useAdmin();
   const { isInstructor } = useInstructor();
-  const { user } = useAuth();
+  const { user, darkLight } = useAuth();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -65,7 +65,7 @@ const ClassCard = ({ item }) => {
           className="h-64 w-full object-cover"
         />
       </figure>
-      <div className="card-body">
+      <div className={`card-body ${darkLight && "text-black"}`}>
         <h2 className="text-3xl font-semibold">{item?.className}</h2>
         <p className="text-lg">Price: ${item?.price}</p>
         <p className="text-lg">Seats: {item?.seats}</p>

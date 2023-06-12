@@ -20,13 +20,6 @@ const MyClasses = () => {
       />
     );
   }
-  // className,
-  // classImage: img,
-  // instructorEmail,
-  // instructorName,
-  // price: parseFloat(price),
-  // seats: parseInt(seats),
-  // status: "pending",
   return (
     <div className="overflow-x-auto">
       <table className="table">

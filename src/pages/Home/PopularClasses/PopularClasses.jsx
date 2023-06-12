@@ -3,8 +3,10 @@ import useAxios from "../../../hooks/useAxios";
 import Container from "../../../shared/Container/Container";
 import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 import ClassCard from "./ClassCard";
+import useAuth from "../../../hooks/useAuth";
 
 const PopularClasses = () => {
+  const { darkLight } = useAuth();
   const [axiosSecure] = useAxios();
   const { data: popularClasses = [] } = useQuery({
     queryKey: ["isPopularClass"],
@@ -14,7 +16,9 @@ const PopularClasses = () => {
     },
   });
   return (
-    <section className="pt-20">
+    <section
+      className={`pt-20 pb-20 ${darkLight && "bg-[#0d1527] text-white"}`}
+    >
       <Container>
         <SectionTitle
           subTitle={"Our Classes"}
