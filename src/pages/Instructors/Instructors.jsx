@@ -11,7 +11,7 @@ const Instructors = () => {
     <div>
       <PageCover title="All Instructor" />
       <Container>
-        <div className="grid md:grid-cols-3 gap-10 mt-10">
+        <div className="grid md:grid-cols-3 gap-10 mt-10 pb-10">
           {instructors.slice(0, 8).map((instructor) => (
             <div
               key={instructor._id}

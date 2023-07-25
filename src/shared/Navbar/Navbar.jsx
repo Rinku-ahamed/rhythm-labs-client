@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useUsers from "../../hooks/useUsers";
 import Container from "../Container/Container";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaRegMoon, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
   const [showHide, setShowHide] = useState(false);
@@ -110,10 +110,10 @@ const Navbar = () => {
               </button>
             </div>
             <button
-              className="btn btn-primary btn-sm ms-3"
+              className="text-3xl ms-5 text-white"
               onClick={() => setDarkLight(!darkLight)}
             >
-              {darkLight ? "Dark" : "Light"}
+              {darkLight ? <FaRegMoon /> : <FaMoon />}
             </button>
           </div>
         </div>

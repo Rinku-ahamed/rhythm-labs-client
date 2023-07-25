@@ -22,7 +22,7 @@ const PopularInstructor = () => {
           ></SectionTitle>
         </ShowAnimation>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-10 mt-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-10 mt-10 pb-10">
           {instructors.slice(0, 8).map((instructor) => (
             <div
               key={instructor._id}

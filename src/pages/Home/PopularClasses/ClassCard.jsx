@@ -59,7 +59,7 @@ const ClassCard = ({ item }) => {
   };
   return (
     <ShowAnimation>
-      <div className="card bg-base-100 shadow-xl">
+      <div className="card bg-base-100 shadow-xl border">
         <figure>
           <img
             src={item?.classImage}
@@ -68,7 +68,7 @@ const ClassCard = ({ item }) => {
           />
         </figure>
         <div className={`card-body ${darkLight && "text-black"}`}>
-          <h2 className="text-3xl font-semibold">{item?.className}</h2>
+          <h2 className="text-2xl font-semibold">{item?.className}</h2>
           <p className="text-lg">Price: ${item?.price}</p>
           <p className="text-lg">Seats: {item?.seats}</p>
           <div className="card-actions justify-start mt-3">

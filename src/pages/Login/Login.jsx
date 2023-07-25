@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUsers from "../../hooks/useUsers";
 import { toast } from "react-hot-toast";
