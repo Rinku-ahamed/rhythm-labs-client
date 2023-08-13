@@ -30,7 +30,7 @@ const PopularClasses = () => {
           ></SectionTitle>
         </ShowAnimation>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {popularClasses.map((pClass) => (
             <ClassCard key={pClass._id} item={pClass}></ClassCard>
           ))}

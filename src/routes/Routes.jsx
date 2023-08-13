@@ -19,6 +19,8 @@ import UpdatedClass from "../pages/Dasboard/Instructor/UpdatedClass";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Payment from "../pages/Dasboard/Student/Payment";
 import PaymentHistory from "../pages/Dasboard/Student/PaymentHistory";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,12 +32,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "about-us",
+        element: <About></About>,
+      },
+      {
         path: "instructors",
         element: <Instructors></Instructors>,
       },
       {
         path: "classes",
         element: <Classes></Classes>,
+      },
+      {
+        path: "contact-us",
+        element: <Contact></Contact>,
       },
       {
         path: "login",

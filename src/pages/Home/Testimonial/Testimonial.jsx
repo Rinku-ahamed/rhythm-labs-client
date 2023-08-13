@@ -25,10 +25,8 @@ const Testimonial = () => {
       <div className="hero-overlay bg-opacity-60"></div>
       <Container>
         <div className="text-center pt-16 pb-14">
-          <h4 className="text-2xl md:text-3xl text-slate-200 font-semibold">
-            Testimonials
-          </h4>
-          <h3 className="text-4xl md:text-6xl font-bold text-white">
+          <h4 className="text-xl text-slate-200 font-semibold">Testimonials</h4>
+          <h3 className="text-3xl md:text-4xl font-bold text-white">
             What our clients say
           </h3>
         </div>
@@ -47,7 +45,7 @@ const Testimonial = () => {
                   <Rating style={{ maxWidth: 80 }} value="4" readOnly />
                 </div>
               </div>
-              <p className="text-xl text-center">
+              <p className="text-[14px] sm:text-xl text-center">
                 Rhythm Labs has been a game-changer for my piano journey. The
                 instructors are incredibly knowledgeable and patient, guiding me
                 through complex rhythms with ease. The interactive lessons and

@@ -66,7 +66,7 @@ const Classes = () => {
     <>
       <PageCover title="Classes"></PageCover>
       <Container>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-5">
           {classData.map((cls) => (
             <div
               key={cls._id}
@@ -81,30 +81,30 @@ const Classes = () => {
                   className="h-60 w-full object-cover object-center"
                 />
               </figure>
-              <div className="card-body">
+              <div className="flex flex-col py-2 px-2">
                 <h2 className="text-2xl font-bold text-amber-500">
                   {cls?.className}
                 </h2>
                 <p className="text-lg">Instructor: {cls.instructorName}</p>
                 <p>Available Seats: {cls?.seats}</p>
                 <p>Price: ${cls?.price}</p>
-                <div className="card-actions justify-start mt-3">
-                  {isAdmin?.admin ||
-                  isInstructor?.instructor ||
-                  cls?.seats == 0 ? (
-                    <button
-                      className="bg-[#ef672a] text-white text-xl px-8 border py-2 opacity-50 rounded"
-                      disabled={true}
-                    >
-                      Select
-                    </button>
-                  ) : (
-                    <div onClick={() => handleSelect(cls)}>
-                      {/* TODO:button disabled condition */}
-                      <Button text="Select"></Button>
-                    </div>
-                  )}
-                </div>
+              </div>
+              <div className=" mt-auto">
+                {isAdmin?.admin ||
+                isInstructor?.instructor ||
+                cls?.seats == 0 ? (
+                  <button
+                    className="bg-[#ef672a] text-white text-xl px-8 border py-2 opacity-50 rounded w-full"
+                    disabled={true}
+                  >
+                    Select
+                  </button>
+                ) : (
+                  <div onClick={() => handleSelect(cls)}>
+                    {/* TODO:button disabled condition */}
+                    <Button size={"100%"}>Select</Button>
+                  </div>
+                )}
               </div>
             </div>
           ))}

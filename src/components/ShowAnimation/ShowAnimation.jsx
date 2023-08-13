@@ -26,24 +26,6 @@ const ShowAnimation = ({ children }) => {
       >
         {children}
       </motion.div>
-      <motion.div
-        variants={{
-          hidden: { left: 0 },
-          visible: { left: "100%" },
-        }}
-        initial="hidden"
-        animate={slideControls}
-        transition={{ duration: 0.5, ease: "easeIn" }}
-        style={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          background: "#58ef58",
-          zIndex: 20,
-        }}
-      ></motion.div>
     </div>
   );
 };
